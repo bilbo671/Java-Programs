@@ -1,0 +1,77 @@
+//<HW4_2RT.java>
+//<Java Programming Rectangles>
+//NCU.edu
+//School of Business and Technology Management
+//<TIM-6110>
+//Author: <William Jenkins>
+//Date: <12-19-20>
+import java.util.Scanner;
+
+public class Main {
+//Code to get Coordinates
+  public static void main(String[] args) {
+      Scanner in = new Scanner(System.in);
+     System.out.println("Enter x and y for corner 1 of rectangle 1:");
+        int C1R1X = in.nextInt();   
+        int C1R1Y = in.nextInt();
+    Point l1 = new Point(C1R1X, C1R1Y);
+    System.out.println("Enter x and y for corner 2 of rectangle 1:");
+        int C2R1X = in.nextInt();   
+        int C2R1Y = in.nextInt();
+    Point r1 = new Point(C2R1X, C2R1Y);
+    System.out.println("Enter x and y for corner 1 of rectangle 2:");
+        int C1R2X = in.nextInt();   
+        int C1R2Y = in.nextInt();
+    Point l2 = new Point(C1R2X, C1R2Y);
+    System.out.println("Enter x and y for corner 2 of rectangle 2:");
+        int C2R2X = in.nextInt();   
+        int C2R2Y = in.nextInt();
+    Point r2 = new Point(C2R2X, C2R2Y);
+
+  Rectangle first = new Rectangle(l1, r1);
+  Rectangle second = new Rectangle(l2, r2);
+
+  if (first.isOverLapping(second)) {
+  System.out
+  .println("The rectangles overlap in the 2D plane.");
+  } else {
+  System.out
+  .println("The rectangles do not overlap in the 2D plane.");
+  }
+  }
+
+}
+//Code to graph rectangles
+class Point {
+  int x;
+  int y;
+
+  public Point(int x, int y) {
+  super();
+  this.x = x;
+  this.y = y;
+  }
+}
+
+class Rectangle {
+
+  private final Point topLeft;
+  private final Point bottomRight;
+
+  public Rectangle(Point topLeft, Point bottomRight) {
+  this.topLeft = topLeft;
+  this.bottomRight = bottomRight;
+  }
+
+  //Code to check overlap
+  public boolean isOverLapping(Rectangle other) {
+  if (this.topLeft.x > other.bottomRight.x // R1 is right to R2
+  || this.bottomRight.x < other.topLeft.x // R1 is left to R2
+  || this.topLeft.y < other.bottomRight.y // R1 is above R2
+  || this.bottomRight.y > other.topLeft.y) { // R1 is below R1
+  return false;
+  }
+  return true;
+  }
+
+}
